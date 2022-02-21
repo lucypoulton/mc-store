@@ -1,0 +1,8 @@
+build/
+**/build/
+config.js
+**/node_modules
+
+.idea/
+*.iml
+.vscode/

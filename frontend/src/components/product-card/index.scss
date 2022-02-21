@@ -1,0 +1,20 @@
+.productCard {
+  box-shadow: var(--shadow);
+  display: inline-block;
+  min-width: 15em;
+  flex: 1 0 15em;
+  padding: 1em;
+
+  color: var(--color-card-fg);
+  background: var(--color-card-bg);
+
+  > * {
+    margin: 0
+  }
+
+  > p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

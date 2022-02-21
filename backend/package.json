@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Lucy Poulton <lucy@lucypoulton.net>",
+  "homepage": "",
+  "license": "BSD-2-Clause",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "lib": "lib",
+    "src": "src"
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.4.0",
+    "stripe": "^8.203.0"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-session": "^1.17.4"
+  }
+}

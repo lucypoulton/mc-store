@@ -1,0 +1,19 @@
+{
+  "name": "mc-store",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-frontend": "cd frontend && npm i && npx react-scripts build",
+    "build-backend": "cd backend && npm run build",
+    "build": "sh ./build.sh",
+    "start": "cd build && npm i && node .",
+    "start:dev": "sh ./build.sh no-front && npm run start"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "typescript": "^4.5.5"
+  }
+}

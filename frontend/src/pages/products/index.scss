@@ -1,0 +1,32 @@
+.product-container {
+  display: flex;
+  width: 100%;
+  margin: 1em;
+  height: 100%;
+
+  .product-sidebar {
+    box-shadow: var(--shadow);
+    max-width: 20em;
+    min-width: 10em;
+    padding: 1em;
+    color: var(--color-card-fg);
+    background: var(--color-card-bg);
+  }
+
+  .product-outlet {
+    text-align: center;
+    margin: 1em;
+    min-width: 0;
+    flex: 1 1 0;
+  }
+}
+
+.product-categories {
+  background: var(--color-accent-bg);
+  color: var(--color-accent-fg);
+  display: inline-block;
+  span {
+    display: inline-block;
+    padding: 1em;
+  }
+}

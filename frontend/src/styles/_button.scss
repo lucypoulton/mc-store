@@ -1,0 +1,14 @@
+button {
+  border: none;
+  outline: none;
+  background: var(--color-accent-bg);
+  color: var(--color-accent-fg);
+  font-size: 1em;
+  padding: .5em;
+  border-radius: var(--border-radius);
+
+  .alt {
+    background: var(--color-alt-bg);
+    color: var(--color-alt-fg);
+  }
+}
