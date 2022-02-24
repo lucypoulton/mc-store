@@ -6,6 +6,11 @@ button {
   font-size: 1em;
   padding: .5em;
   border-radius: var(--border-radius);
+  cursor: pointer;
+
+  &.disabled {
+    opacity: 80%;
+  }
 
   .alt {
     background: var(--color-alt-bg);

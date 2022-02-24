@@ -28,7 +28,8 @@ router.post('/', async (req, res) => {
 
 	const basket = getBasket(req)
 	if (basket.paymentIntent) {
-		await stripe.paymentIntents.cancel(basket.paymentIntent)
+		await stripe.paymentIntents.cancel(basket.paymentIntent.split('_secret')[0])
+		delete basket.paymentIntent
 	}
 	const newQuantity = (basket.products[body.product] ?? 0) + (body.quantity ?? 1)
 	if (newQuantity <= 0) delete basket.products[body.product]
@@ -64,7 +65,7 @@ router.get('/checkout', async (req, res) => {
 		return res.status(500).send()
 	}
 
-	basket.paymentIntent = intent.id
+	basket.paymentIntent = intent.client_secret ?? undefined
 	return res.json(req.session.basket)
 })
 

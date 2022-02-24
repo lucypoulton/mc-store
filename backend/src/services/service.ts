@@ -4,5 +4,5 @@
 export interface Service<T> {
 	getAll(): Promise<T[]>,
 	find(query: Partial<T>): Promise<T[]>
-	insert(thing: T): Promise<void>
+	insert(thing: T): Promise<any>
 }

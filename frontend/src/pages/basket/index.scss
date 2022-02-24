@@ -1,0 +1,16 @@
+.basket-container {
+  text-align: center;
+  > table {
+    margin: auto;
+
+    th, td {
+      padding: 0 1em;
+    }
+  }
+}
+
+.basket-payment-element {
+  max-width: 40em;
+  padding: 1em;
+  margin: auto;
+}

@@ -5,6 +5,10 @@ export interface Permissions {
 	manageProducts: boolean,
 
 	/**
+	 * Can create, edit, delete, and alter clients.
+	 */
+	manageClients: boolean,
+	/**
 	 * Can act as a client with a given ID.
 	 */
 	client: string

@@ -1,13 +1,27 @@
-import React, {useContext} from 'react';
+import React, {createContext, useEffect} from 'react';
 import {useRoutes} from "react-router-dom";
-import {ProductRoute} from "./pages/products";
-import Navbar from "./components/navbar";
-import {ConfigContext} from "./context";
+import {ProductRoutes} from "./pages/products";
+import Navbar from "./components/navbar/index";
+import {BasketRoutes} from "./pages/basket";
+import {useConfig} from "./utils/queries";
+import {loadStripe, Stripe} from "@stripe/stripe-js";
+import {Config} from "../../models/config";
+import {queryClient} from "./index";
+
+export const StripeContext = createContext<Promise<Stripe | null> | null>(null)
+
+let stripe: Promise<Stripe | null>
 
 function App() {
-	const component = useRoutes([ProductRoute]);
-	const branding = useContext(ConfigContext);
-	return <>
+	const component = useRoutes([ProductRoutes, BasketRoutes]);
+	const branding = useConfig().data!;
+
+	useEffect(() => {
+		stripe = queryClient.fetchQuery<Config>('config')
+			.then(cfg => loadStripe(cfg.stripeKey))
+	}, [])
+
+	return <StripeContext.Provider value={stripe}>
 		<style>
 			{`@import url('https://fonts.googleapis.com/css2?family=${branding.theme.font.name.replace(' ', '+')}&display=swap');
 :root {
@@ -31,7 +45,7 @@ function App() {
 		</style>
 		<Navbar/>
 		{component}
-	</>
+	</StripeContext.Provider>
 }
 
 export default App;

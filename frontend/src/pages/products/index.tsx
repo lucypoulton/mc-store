@@ -1,11 +1,11 @@
-import {Outlet, RouteObject, useSearchParams} from "react-router-dom";
-import {ProductsContext} from "../../context";
-import {useContext} from "react";
+import {Outlet, RouteObject} from "react-router-dom";
 import ProductCard from "../../components/product-card";
 import ProductDetail from "./product-detail";
 import './index.scss';
+import {useQuery} from "react-query";
+import {getProducts} from "../../utils/apiMethods";
 
-export const ProductRoute: RouteObject = {
+export const ProductRoutes: RouteObject = {
 	path: '/products',
 	element: <ProductsComponent/>,
 	children: [
@@ -27,21 +27,18 @@ function ProductsComponent() {
 }
 
 function IndexComponent() {
-	const [params, setParams] = useSearchParams();
-	const productCategories = useContext(ProductsContext);
+	const products = useQuery('products', getProducts)
 
-	const category = productCategories.find(cat => cat.name === params.get('category')) ?? productCategories[0];
-
-	return <>
+	return products.isLoading ?
+		<h1>Loading...</h1>:
+		<>
 		<h1 className="center">Products</h1>
-		<span className="product-categories rounded">{productCategories.map(cat =>
-		<span key={cat.name} onClick={() => setParams({category: cat.name})}>{cat.name}</span>
-		)}</span>
+		<span className="product-categories rounded">
+			<span>Category</span>
+			<span>Category 2</span>
+		</span>
 		<div style={{display: 'flex', margin: '1em', gap: '1em'}}>
-			{productCategories
-				.filter(cat => cat.name === category?.name)
-				.flatMap(cat => cat.products)
-				.map(product => <ProductCard key={product.name} product={product}/>)}
+			{products.data?.map(product => <ProductCard key={product.name} product={product}/>)}
 		</div>
 	</>
 }
